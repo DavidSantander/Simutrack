@@ -1,0 +1,11 @@
+//Navbar
+00334e
+
+//Section 1
+145374
+
+//Section 2
+b8dff0
+
+//Font Color 1
+5588a3

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Simutrack</title>
+
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500|Roboto:400,500&display=swap" rel="stylesheet">
+
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/4bef644f33.js"></script>
+
+  <!-- Icon -->
+  <link rel="icon" href="images/simutrack-icon.ico">
+
+  <!-- Bootstrap Scripts -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+  <!-- Nav Bar -->
+  <section id="navigation">
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href=""><span class="fas fa-dna"></span> Simutrack</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#title">Acceder</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#sign-up">Registrarse</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#footer">Contacto</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Title and sign-up -->
+  <section class="blue-strong" id="title">
+    <div class="container-fluid container-general">
+
+      <div class="row">
+        <div class="col-lg-6">
+          <h1 class="title-heading">Mejora tus habilidades quirúrgicas</h1>
+          <p class="title-text">Simutrack es una aplicación web que te permite
+            registar tus avanaces de habilidades quirurgicas usando un <strong>simulador</strong>
+            físico  para <strong>cirugía laparoscópica</strong> así como guía para diferentes
+            actividades de entrenamiento quirúrgico.
+          </p>
+        </div>
+
+        <!-- Sign Up Card -->
+        <div class="col-lg-6">
+          <div class="card class sign-up">
+            <div class="card-body">
+              <form>
+
+                <!-- Username Input -->
+                <div class="form-group">
+                  <label for="inputUsername">Usuario</label>
+                  <input type="text" class="form-control" id="inputUsername" placeholder="Introduce tu usuario">
+                </div>
+
+                <!-- Email Input -->
+                <div class="form-group">
+                  <label for="inputEmail">Correo Electrónico</label>
+                  <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Introduce tu correo">
+                  <small id="emailHelp" class="form-text ">No compartiremos tu correo con nadie.</small>
+                </div>
+
+                <!-- Password Input -->
+                <div class="form-group">
+                  <label for="inputPassword">Contraseña</label>
+                  <input type="password" class="form-control" id="inputPassword" placeholder="Introduce tu contraseña">
+                </div>
+
+                <!-- Email Input -->
+                <button type="submit" class="btn btn-primary">Acceder</button>
+              </form>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Info Cards -->
+  <section class="blue-light" id="info-cards">
+    <div class="container-fluid container-general">
+      <div class="row">
+
+        <!-- Track Card -->
+        <div class="col-lg-4">
+          <i class="fas fa-glasses info-card-icons"></i>
+          <p>Rastrea el desplezamiento de tus pinzas quirurgicas en tiempo real.</p>
+        </div>
+
+        <!-- Tutorial Card -->
+        <div class="col-lg-4">
+          <i class="fas fa-play info-card-icons"></i>
+          <p>Mira tutoriales para realizar ejercicios quirúrgicos.</p>
+        </div>
+
+        <!-- Log card -->
+        <div class="col-lg-4">
+          <i class="fas fa-chart-line info-card-icons"></i>
+          <p>Registra tus avances conforme vas progresando y obten parámetros de cada simulación realizada.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+
+    <!-- Footer Section -->
+  <section>
+
+    <footer id="footer" class="blue-light white-section">
+      <div class="container-fluid container-general">
+        <i class="fab fa-twitter fab-footer"></i>
+        <i class="fab fa-facebook-f fab-footer"></i>
+        <i class="fab fa-instagram fab-footer"></i>
+        <i class="fas fa-envelope fab-footer"></i>
+        <p>© Copyright 2019 Simutrack</p>
+      </div>
+
+    </footer>
+
+  </section>
+
+</body>
+
+</html>

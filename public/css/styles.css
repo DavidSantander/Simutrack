@@ -1,0 +1,101 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto', sans-serif;
+
+}
+
+/* Containers */
+.container-fluid {
+  padding: 0;
+}
+
+.container-general {
+  padding: 7% 16%;
+}
+
+/* Navigation Bar */
+.navbar {
+  background-color: #00334e;
+  padding: 1% 7%;
+  padding-left: 16%;
+
+  -webkit-box-shadow: 0 6px 12px -2px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0 6px 12px -2px rgba(0,0,0,0.75);
+  box-shadow: 0 6px 12px -2px rgba(0,0,0,0.75);
+}
+
+.navbar-brand {
+  font-weight: 500;
+}
+
+.navbar-link {
+  font-size: 1.5rem;
+}
+
+/* Sections */
+.blue-strong {
+  background-color: #145374;
+  color: #FFF;
+}
+
+.blue-light {
+  background-color: #b8dff0;
+  color: #00334e;
+}
+
+/* Title Section */
+#title {
+  padding: 4% 0;
+  text-align: left;
+}
+
+.title-heading {
+  font-size: 3.0rem;
+  padding-bottom: 20px;
+}
+
+.title-text {
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+/* Sign Up*/
+.sign-up {
+  padding: 3% 5%;
+  color: #24292E;
+  background-color: #b8dff0;
+
+  /* Shadow */
+  -webkit-box-shadow: 10px 10px 12px -8px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 12px -8px rgba(0,0,0,0.75);
+  box-shadow: 10px 10px 12px -8px rgba(0,0,0,0.75);
+}
+
+/* Info Cards Section */
+#info-cards {
+  text-align: center;
+}
+
+.info-card-icons {
+  font-size: 7rem;
+  padding-bottom: 10%;
+
+}
+
+/* Footer Section */
+#footer .container-fluid{
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+
+
+@media (max-width: 1028px) {
+  #title {
+    text-align: center;
+  }
+}

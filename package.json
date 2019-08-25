@@ -1,0 +1,24 @@
+{
+  "name": "simutrack",
+  "version": "1.0.0",
+  "description": "App for thesis",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DavidSantander/Simutrack.git"
+  },
+  "author": "David Santander",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DavidSantander/Simutrack/issues"
+  },
+  "homepage": "https://github.com/DavidSantander/Simutrack#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^2.6.2",
+    "express": "^4.17.1"
+  }
+}

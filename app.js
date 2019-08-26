@@ -90,11 +90,7 @@ app.get("/login", function(req, res) {
   res.render("login");
 });
 
-app.post('/login',passport.authenticate('local'), function(req, res) {
-    // If this function gets called, authentication was successful.
-    // `req.user` contains the authenticated user.
-    res.redirect('/session');
-  });
+app.post('/login', passport.authenticate('local', { successRedirect:'/session',  failureRedirect: '/login' }));
 
 //Listen for connections on the specified host and port
 app.listen(3000, function() {

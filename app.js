@@ -59,18 +59,19 @@ passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+
+////////////////////////////////////////////////////  REQUESTS //////////////////////////////////////////////////
+
 //User request for the homepage
 app.get("/", function(req, res) {
   res.render("home");
 });
 
-app.get("/session", function(req, res) {
-  if(req.isAuthenticated()) {
-    res.render("session");
-  } else {
-    res.redirect("/login");
-  }
+//User request for the homepage
+app.get("/home", function(req, res) {
+  res.render("home");
 });
+
 
 //When user register no page
 app.post("/home", function(req, res) {
@@ -86,11 +87,33 @@ app.post("/home", function(req, res) {
   });
 });
 
+
+//When user request the log in page
 app.get("/login", function(req, res) {
   res.render("login");
 });
 
+//Whe user tryes to authenticate
 app.post('/login', passport.authenticate('local', { successRedirect:'/session',  failureRedirect: '/login' }));
+
+//If user request the session route
+app.get("/session", function(req, res) {
+  if(req.isAuthenticated()) {
+    res.render("session");
+  } else {
+    res.redirect("/login");
+  }
+});
+
+//Whe user log out
+app.get("/logout", function(req, res) {
+  req.logout();
+  res.redirect("/");
+});
+
+
+
+
 
 //Listen for connections on the specified host and port
 app.listen(3000, function() {

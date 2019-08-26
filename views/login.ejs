@@ -14,16 +14,16 @@
 
             <div class="card-body">
 
-              <form>
+              <form action="/login" method="POST">
 
                 <div class="form-group">
                   <label for="loginInputEmail">Correo Electrónico</label>
-                  <input type="email" class="form-control" id="loginInputEmail">
+                  <input type="email" class="form-control" id="loginInputEmail" name="userMail">
                 </div>
 
                 <div class="form-group">
                   <label for="loginInputPassword">Contraseña</label>
-                  <input type="password" class="form-control" id="loginInputPassword">
+                  <input type="password" class="form-control" id="loginInputPassword" name="password">
                 </div>
 
                 <button type="submit" class="btn btn-primary">Acceder</button>

@@ -9,7 +9,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            
+
             <li class="nav-item active">
               <a class="nav-link" href="#title">Registrarse</a>
             </li>
@@ -50,29 +50,30 @@
         <div class="col-lg-6">
           <div class="card class sign-up">
             <div class="card-body">
-              <form>
+              <form action="/home" method="POST">
 
                 <!-- Username Input -->
                 <div class="form-group">
                   <label for="inputUsername">Usuario</label>
-                  <input type="text" class="form-control" id="inputUsername" placeholder="Introduce tu usuario">
+                  <input type="text" class="form-control" id="inputUsername" name="username" placeholder="Introduce tu usuario">
                 </div>
 
                 <!-- Email Input -->
                 <div class="form-group">
                   <label for="inputEmail">Correo Electrónico</label>
-                  <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Introduce tu correo">
+                  <input type="email" class="form-control" id="inputEmail" name="userMail" aria-describedby="emailHelp" placeholder="Introduce tu correo">
                   <small id="emailHelp" class="form-text ">No compartiremos tu correo con nadie.</small>
                 </div>
 
                 <!-- Password Input -->
                 <div class="form-group">
                   <label for="inputPassword">Contraseña</label>
-                  <input type="password" class="form-control" id="inputPassword" placeholder="Introduce tu contraseña">
+                  <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Introduce tu contraseña">
                 </div>
 
                 <!-- Email Input -->
                 <button type="submit" class="btn btn-primary">Registrate en Simutrack</button>
+                
               </form>
             </div>
           </div>

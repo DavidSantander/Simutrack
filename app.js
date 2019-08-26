@@ -4,6 +4,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
+const mongoose = require("mongoose");
 
 //Initialize the express module
 const app = express();
@@ -17,13 +18,68 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+//Connect to the MongoDB database
+mongoose.connect("mongodb://localhost:27017/simutrackDB", {useNewUrlParser: true});
+
+
+//Create a user Schema
+const userSchema = {
+  username: String,
+  email: String,
+  password: String
+};
+
+//Create the new model for User
+const User = new mongoose.model("User", userSchema);
+
 //User request for the homepage
 app.get("/", function(req, res) {
   res.render("home");
 });
 
+//When user register no page
+app.post("/home", function(req, res) {
+
+  //Create new user with the date submited by user
+  const newUser = new User({
+    username: req.body.username,
+    email: req.body.userMail,
+    password: req.body.password
+  });
+
+  //Save the user in the database
+  newUser.save(function(err) {
+    if(err) {
+      console.log(err);
+    } else {
+      //Enter the page
+      res.send("User saved");
+    }
+  });
+});
+
 app.get("/login", function(req, res) {
   res.render("login");
+});
+
+app.post("/login", function (req, res) {
+  //Save the data posted by the user when logging in
+  const userEmail = req.body.userMail;
+  const password = req.body.password;
+
+  
+  User.findOne({email: userEmail}, function(err, foundUser) {
+     if(err){
+       console.log(err);
+     } else {
+       if (foundUser) {
+         console.log(foundUser);
+         if(foundUser.password === password) {
+           res.send("Succesfully logged in.");
+         }
+       }
+     }
+  });
 });
 
 //Listen for connections on the specified host and port

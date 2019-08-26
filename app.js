@@ -22,6 +22,10 @@ app.get("/", function(req, res) {
   res.render("home");
 });
 
+app.get("/login", function(req, res) {
+  res.render("login");
+});
+
 //Listen for connections on the specified host and port
 app.listen(3000, function() {
   console.log("Server started on port 3000.");

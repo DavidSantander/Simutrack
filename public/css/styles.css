@@ -68,12 +68,28 @@ h1, h2, h3, h4, h5, h6 {
   padding: 3% 5%;
   color: #24292E;
   background-color: #b8dff0;
-
+  text-align: left;
   /* Shadow */
   -webkit-box-shadow: 10px 10px 12px -8px rgba(0,0,0,0.75);
   -moz-box-shadow: 10px 10px 12px -8px rgba(0,0,0,0.75);
   box-shadow: 10px 10px 12px -8px rgba(0,0,0,0.75);
 }
+
+/*Log in*/
+.log-in {
+  padding: 8.5% auto;
+}
+
+.login-image {
+  width: 5%;
+  padding-bottom: 2%;
+}
+
+#log-in-sec .card {
+  margin: 0 auto; /* Added */
+  width: 450px;
+}
+
 
 /* Info Cards Section */
 #info-cards {

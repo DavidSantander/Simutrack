@@ -1,44 +1,29 @@
 <%- include("partials/header") -%>
 <section id="log-in-sec">
-
   <div class="container-fluid container-general blue-strong log-in">
-
     <div class="row">
-
       <div class="col-lg-12">
         <!-- Login Title -->
         <img src="images/simutrack-nobckgrnd.png" class="login-image" alt="Simutrack Icon">
         <h1>Accede a Simutrack</h1>
         <!-- Login Card -->
         <div class="card sign-up">
-
-            <div class="card-body">
-
-              <form action="/login" method="POST">
-
-                <div class="form-group">
-                  <label for="loginInputEmail">Correo Electrónico</label>
-                  <input type="email" class="form-control" id="loginInputEmail" name="userMail">
-                </div>
-
-                <div class="form-group">
-                  <label for="loginInputPassword">Contraseña</label>
-                  <input type="password" class="form-control" id="loginInputPassword" name="password">
-                </div>
-
-                <button type="submit" class="btn btn-primary">Acceder</button>
-
-              </form>
-
-            </div>
-
+          <div class="card-body">
+            <form action="/login" method="POST">
+              <div class="form-group">
+                <label for="loginInputUser">Usuario</label>
+                <input type="text" class="form-control" id="loginInputUser" name="username">
+              </div>
+              <div class="form-group">
+                <label for="loginInputPassword">Contraseña</label>
+                <input type="password" class="form-control" id="loginInputPassword" name="password">
+              </div>
+              <button type="submit" class="btn btn-primary">Acceder</button>
+            </form>
           </div>
-
         </div>
-
+      </div>
     </div>
-
   </div>
-
 </section>
 <%- include("partials/footer") -%>

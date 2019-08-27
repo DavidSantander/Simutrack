@@ -1,7 +1,6 @@
 //jshint esversion:6
 
 //Load all modules required
-require('dotenv').config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
@@ -9,8 +8,7 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
-const GoogleStrategy =require('passport-google-oauth20').Strategy;
-const findOrCreate = require("mongoose-findorcreate");
+
 
 //Initialize the express module
 const app = express();
@@ -38,21 +36,18 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //Connect to the MongoDB database
-mongoose.connect("mongodb+srv://admin-david:S4nT4nD3radmin@simutrackcluster-qdwmq.mongodb.net/simutrackDB", {useNewUrlParser: true});
+mongoose.connect("mongodb://localhost:27017/simutrackDB", {useNewUrlParser: true});
 mongoose.set("useCreateIndex", true);
 
 //Create a user Schema
 const userSchema = new mongoose.Schema({
   username: String,
   email: String,
-  password: String,
-  googleId: String
+  password: String
 });
 
 //Add the passport module to the user Schema
 userSchema.plugin(passportLocalMongoose);
-//Add findOrCreate module to the user userSchema
-userSchema.plugin(findOrCreate);
 
 //Create the new model for User
 const User = new mongoose.model("User", userSchema);
@@ -61,30 +56,9 @@ const User = new mongoose.model("User", userSchema);
 passport.use(User.createStrategy());
 
 //Serialize and deserialize cookie
-passport.serializeUser(function(user, done) {
-  done(null, user.id);
-});
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
-passport.deserializeUser(function(id, done) {
-  User.findById(id, function(err, user) {
-    done(err, user);
-  });
-});
-
-//Configure strategy for Google auth
-passport.use(new GoogleStrategy({
-    clientID: process.env.CLIENT_ID,
-    clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: "https://shrouded-lake-98651.herokuapp.com/auth/google/session	",
-    //Necessary to handle Google Plus deprecation
-    userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
-  },
-  function(accessToken, refreshToken, profile, cb) {
-    User.findOrCreate({ googleId: profile.id }, function (err, user) {
-      return cb(err, user);
-    });
-  }
-));
 
 ////////////////////////////////////////////////////  REQUESTS //////////////////////////////////////////////////
 
@@ -112,18 +86,6 @@ app.post("/home", function(req, res) {
     }
   });
 });
-
-//When user authenticates using GoogleStrategy
-app.get("/auth/google",
-  passport.authenticate('google', { scope: ["profile"] })
-);
-
-app.get("/auth/google/session",
-  passport.authenticate('google', { failureRedirect: "/login" }),
-  function(req, res) {
-    // Successful authentication, redirect session.
-    res.redirect("/session");
-  });
 
 
 //When user request the log in page
@@ -154,12 +116,6 @@ app.get("/logout", function(req, res) {
 
 
 //Listen for connections on the specified host and port
-
-let port = process.env.PORT;
-if (port == null || port == "") {
-  port = 3000;
-}
-
-app.listen(port, function() {
-  console.log("Server started succesfully.");
+app.listen(3000, function() {
+  console.log("Server started on port 3000.");
 });

@@ -1,6 +1,7 @@
 //jshint esversion:6
 
 //Load all modules required
+require('dotenv').config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
@@ -8,6 +9,8 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
+const GoogleStrategy =require('passport-google-oauth20').Strategy;
+const findOrCreate = require("mongoose-findorcreate");
 
 
 //Initialize the express module
@@ -43,11 +46,14 @@ mongoose.set("useCreateIndex", true);
 const userSchema = new mongoose.Schema({
   username: String,
   email: String,
-  password: String
+  password: String,
+  googleId: String
 });
 
 //Add the passport module to the user Schema
 userSchema.plugin(passportLocalMongoose);
+//Add findOrCreate module to the user userSchema
+userSchema.plugin(findOrCreate);
 
 //Create the new model for User
 const User = new mongoose.model("User", userSchema);
@@ -56,9 +62,30 @@ const User = new mongoose.model("User", userSchema);
 passport.use(User.createStrategy());
 
 //Serialize and deserialize cookie
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
 
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
+
+//Configure strategy for Google auth
+passport.use(new GoogleStrategy({
+    clientID: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
+    callbackURL: "http://localhost:3000/auth/google/session",
+    //Necessary to handle Google Plus deprecation
+    userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
+  },
+  function(accessToken, refreshToken, profile, cb) {
+    User.findOrCreate({ googleId: profile.id }, function (err, user) {
+      return cb(err, user);
+    });
+  }
+));
 
 ////////////////////////////////////////////////////  REQUESTS //////////////////////////////////////////////////
 
@@ -86,6 +113,18 @@ app.post("/home", function(req, res) {
     }
   });
 });
+
+//When user authenticates using GoogleStrategy
+app.get("/auth/google",
+  passport.authenticate('google', { scope: ["profile"] })
+);
+
+app.get("/auth/google/session",
+  passport.authenticate('google', { failureRedirect: "/login" }),
+  function(req, res) {
+    // Successful authentication, redirect session.
+    res.redirect("/session");
+  });
 
 
 //When user request the log in page

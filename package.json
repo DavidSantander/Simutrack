@@ -12,6 +12,9 @@
   },
   "author": "David Santander",
   "license": "ISC",
+  "engines": {
+    "node": "10.16.3"
+  },
   "bugs": {
     "url": "https://github.com/DavidSantander/Simutrack/issues"
   },

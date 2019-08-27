@@ -36,7 +36,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //Connect to the MongoDB database
-mongoose.connect("mongodb://localhost:27017/simutrackDB", {useNewUrlParser: true});
+mongoose.connect("mongodb+srv://admin-david:S4nT4nD3radmin@simutrackcluster-qdwmq.mongodb.net/simutrackDB", {useNewUrlParser: true});
 mongoose.set("useCreateIndex", true);
 
 //Create a user Schema

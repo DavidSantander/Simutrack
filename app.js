@@ -8,6 +8,8 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
 
 
 //Initialize the express module
@@ -43,7 +45,8 @@ mongoose.set("useCreateIndex", true);
 const userSchema = new mongoose.Schema({
   username: String,
   email: String,
-  password: String
+  password: String,
+  bcryptPass: String
 });
 
 //Add the passport module to the user Schema
@@ -75,16 +78,24 @@ app.get("/home", function(req, res) {
 
 //When user register no page
 app.post("/home", function(req, res) {
-  User.register({username: req.body.username, email:req.body.userEmail}, req.body.password, function(err, user) {
-    if(err) {
-      console.log(err);
-      res.redirect("/");
-    } else {
-      passport.authenticate("local")(req, res, function() {
-        res.render("session");
-      });
-    }
+  //Hash password for further use in Desktop App
+
+  bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
+    
+    User.register({username: req.body.username, email: req.body.userEmail, bcryptPass: hash}, req.body.password, function(err, user) {
+      if(err) {
+        console.log(err);
+        res.redirect("/");
+      } else {
+        passport.authenticate("local")(req, res, function() {
+          res.render("session");
+        });
+      }
+    });
+
   });
+
+
 });
 
 
